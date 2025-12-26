@@ -1,15 +1,37 @@
-
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import About from './pages/About'
+import Collection from './pages/Collection'
+import Contact from './pages/Contact'
+import Product from './pages/Product'
+import Cart from './pages/Cart'
+import Login from './pages/Login'
+import PlaceOrder from './pages/PlaceOrder'
+import Orders from './pages/Orders'
 import './App.css'
+import Navbar from './components/layouts/Navbar'
+import Footer from './components/layouts/Footer'
 
 function App() {
 
-
   return (
-    <>
-     <div>
-      Hola mundo
-     </div>
-    </>
+
+      <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+        <Navbar/>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sobre-nosotros" element={<About />} />
+          <Route path="/coleccion" element={<Collection />} />
+          <Route path="/contacto" element={<Contact />} />
+          <Route path="/producto/:productId" element={<Product />} />
+          <Route path="/carrito" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/realizar-pedido" element={<PlaceOrder />} />
+          <Route path="/pedidos" element={<Orders />} />
+        </Routes>
+        <Footer/>
+      </div>
+
   )
 }
 
