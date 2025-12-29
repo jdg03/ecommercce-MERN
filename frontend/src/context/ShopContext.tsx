@@ -1,6 +1,5 @@
   import { createContext } from "react";
   import { products } from "../assets/frontend_assets/assets";
-  import type { Product } from "../interfaces/ProductInterface";
   import type { ShopContextType } from "../interfaces/ShopContextInterface";
 
  

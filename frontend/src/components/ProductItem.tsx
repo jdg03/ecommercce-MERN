@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
 import { useShopContext } from "../hooks/useShopContext";
+import type { Product } from "../interfaces/ProductInterface";
 
-interface ProductItemProps {
-    _id: string;
-    name: string;
-    image: string[];
-    price: number;
-}
+type ProductItemProps = Pick<Product, '_id' | 'name' | 'image' | 'price'>;
 
 const ProductItem = ({_id, name, image, price}: ProductItemProps) => {
 
