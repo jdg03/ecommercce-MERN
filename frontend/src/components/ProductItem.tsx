@@ -1,6 +1,5 @@
-import { useContext } from "react";
-import { ShopContext } from "../context/ShopContext";
 import { Link } from "react-router-dom";
+import { useShopContext } from "../hooks/useShopContext";
 
 interface ProductItemProps {
     _id: string;
@@ -11,7 +10,7 @@ interface ProductItemProps {
 
 const ProductItem = ({_id, name, image, price}: ProductItemProps) => {
 
-    const {currency} = useContext(ShopContext);
+    const {currency} = useShopContext();
   return (
     <Link to={`/producto/${_id}`} className="text-gray-600 cursor-pointer">
         <div className="overflow-hidden">
