@@ -12,6 +12,7 @@
   
     const  currency: string = "L";
     const delivery_fee: number = 10;
+   
 
     const value = {
         products,
