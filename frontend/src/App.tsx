@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
-import Collection from './pages/Products'
 import Contact from './pages/Contact'
 import Product from './pages/Product'
 import Cart from './pages/Cart'
@@ -12,6 +11,7 @@ import './App.css'
 import Navbar from './components/layouts/Navbar'
 import Footer from './components/layouts/Footer'
 import Products from './pages/Products'
+import SearchBar from './components/ui/SearchBar'
 
 function App() {
 
@@ -19,6 +19,7 @@ function App() {
 
     <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
       <Navbar />
+      <SearchBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sobre-nosotros" element={<About />} />

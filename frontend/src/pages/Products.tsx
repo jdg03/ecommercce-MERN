@@ -8,7 +8,7 @@ import type { Product } from "../interfaces/ProductInterface";
 import ProductItem from "../components/ui/ProductItem";
 
 const Products = () => {
-  const { products } = useShopContext();
+  const { products, showSearch, setShowSearch } = useShopContext();
   const [showFilter, setShowFilter] = useState<boolean>(true);
   const [filterProducts, setFilterProducts] = useState<Product[]>(products);
   const [category, setCategory] = useState<string[]>([]);

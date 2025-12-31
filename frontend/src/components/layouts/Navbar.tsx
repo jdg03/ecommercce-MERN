@@ -1,9 +1,12 @@
 import { NavLink, Link } from "react-router-dom";
 import { assets } from "../../assets/frontend_assets/assets";
 import { useState } from "react";
+import { useShopContext } from "../../hooks/useShopContext";
 
 const Navbar = () => {
   const [visible, setVisible] = useState<boolean>(false);
+
+  const {setShowSearch } = useShopContext();
 
   return (
     <div className="flex items-center justify-between py-5 font-medium">
@@ -35,7 +38,8 @@ const Navbar = () => {
         <img
           src={assets.search_icon}
           className="w-5 cursor-pointer"
-          alt="icono de busqueda"
+          alt="search_icon"
+          onClick={() => setShowSearch(true)}
         />
         <Link to="carrito" className="relative">
           <img src={assets.cart_icon} alt="carrito" className="w-5 w-min-5" />
@@ -47,7 +51,7 @@ const Navbar = () => {
           <img
             className="w-5 cursor-pointer"
             src={assets.profile_icon}
-            alt=""
+            alt="profile_icon"
           />
 
           <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
@@ -60,7 +64,6 @@ const Navbar = () => {
         </div>
 
         <img
-          onClick={() => setVisible(true)}
           src={assets.menu_icon}
           alt="menu"
           className="cursor-pointer w-5 sm:hidden"
