@@ -15,6 +15,11 @@ const SearchBar = () => {
     }
   }, [location.pathname]);
 
+  const closeSearchBar = () => {
+    setShowSearch(false);
+    setSearch("");
+  };
+
   if (!showSearch) return null;
 
   return (
@@ -32,7 +37,7 @@ const SearchBar = () => {
       <img
         src={assets.cross_icon}
         alt="close"
-        onClick={() => setShowSearch(false)}
+        onClick={closeSearchBar}
         className="inline w-3 cursor-pointer"
       />
     </div>

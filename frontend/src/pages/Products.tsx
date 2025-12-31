@@ -8,7 +8,7 @@ import type { Product } from "../interfaces/ProductInterface";
 import ProductItem from "../components/ui/ProductItem";
 
 const Products = () => {
-  const { products, showSearch, setShowSearch } = useShopContext();
+  const { products, showSearch, search } = useShopContext();
   const [showFilter, setShowFilter] = useState<boolean>(true);
   const [filterProducts, setFilterProducts] = useState<Product[]>(products);
   const [category, setCategory] = useState<string[]>([]);
@@ -44,6 +44,12 @@ const Products = () => {
     
     let productsCopy = products.slice();
 
+    if (search && showSearch) {
+      productsCopy = productsCopy.filter((product) =>
+        product.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
     if (category.length > 0) {
       productsCopy = productsCopy.filter((product) =>
         category.includes(product.category)
@@ -59,10 +65,10 @@ const Products = () => {
     setFilterProducts(productsCopy);
   };
 
-  //effect for apply filters, activated when category or subCategories changes 
+  //effect for apply filters, activated when category, subCategories or search changes 
   useEffect(() => {
     applyFilters();
-  }, [category, subCategories]);
+  }, [category, subCategories, search, showSearch]);
 
   //function for sorting products, called when sortType changes 
   const sortProducts = (value: string) => {
@@ -94,14 +100,14 @@ const Products = () => {
       {/* filter options*/}
       <div className="min-w-60">
         <p
-          onClick={() => setShowFilter(!showFilter)}
-          className="my-2 text-xl flex items-center cursor-pointer gap-2"
+          className="my-2 text-xl flex items-center gap-2"
         >
           FILTROS
           <img
+            onClick={() => setShowFilter(!showFilter)}
             src={assets.dropdown_icon}
             alt="dropdown_icon"
-            className={`h-3 sm:hidden ${showFilter ? "rotate-90" : ""}`}
+            className={`h-3 sm:hidden cursor-pointer ${showFilter ? "rotate-90" : ""}`}
           />
         </p>
 
