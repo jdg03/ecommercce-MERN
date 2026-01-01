@@ -15,7 +15,9 @@
 
     const [search, setSearch] = useState("");
     const [showSearch, setShowSearch] = useState(false);
-   
+
+
+    
 
     const value = {
         products,
@@ -25,6 +27,7 @@
         setSearch,
         showSearch,
         setShowSearch,
+  
     }
     return(
         <ShopContext.Provider value={value}>

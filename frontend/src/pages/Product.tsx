@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import type { Product } from "../interfaces/ProductInterface";
 import { assets } from "../assets/frontend_assets/assets";
 import RelatedProducts from "../components/products/RelatedProducts";
+import { useCartContext } from "../hooks/useCartContext";
 
 const Product = () => {
   const { productId } = useParams();
@@ -13,6 +14,8 @@ const Product = () => {
   const [size, setSize] = useState<string>("");
   const [color, setColor] = useState<string>("");
 
+  const { addToCart, getCartCount ,removeFromCart } = useCartContext();
+ 
   const fetchProductData = async () => {
     const product = products.find((product) => product._id === productId);
     if (product) {
@@ -20,6 +23,26 @@ const Product = () => {
       setImage(product.image[0]);
     }
   };
+
+  const handleAddToCart = () => {
+    if (!size) {
+      alert("Por favor selecciona una talla");
+      return;
+    }
+    
+
+    if (productData?.colors && productData.colors.length > 0 && !color) {
+      alert("Por favor selecciona un color");
+      return;
+    }
+
+    addToCart(
+      productData?._id || "", 
+      size, 
+      color || undefined
+    );
+  };
+
 
   useEffect(() => {
     fetchProductData();
@@ -85,8 +108,9 @@ const Product = () => {
                 ))}
               </div>
             </div>
-          
-            {productData.colors?.length > 0 && (
+
+            {/*TODO: productData.colors?.length  */}
+            {productData.colors && productData.colors.length > 0 && (
               <div className="flex flex-col">
                 <p>Selecciona el color</p>
                 <div className="flex gap-2">
@@ -102,12 +126,11 @@ const Product = () => {
                     </button>
                   ))}
                 </div>
-            </div>
-          )}
-          
-        </div>
+              </div>
+            )}
+          </div>
 
-          <button className="bg-black text-white px-8 py-3 rounded text-sm active:bg-gray-7 hover:scale-x-105 transition ease-in-out">
+          <button onClick={handleAddToCart} className="bg-black text-white px-8 py-3 rounded text-sm active:bg-gray-7 hover:scale-x-105 transition ease-in-out">
             Agregar al carrito
           </button>
           <hr className="mt-8 sm:w-4/5" />
@@ -141,12 +164,13 @@ const Product = () => {
         </div>
       </div>
 
-      {/*display related productos*/ }
+      {/*display related productos*/}
       <div>
-        <RelatedProducts category={productData.category} subCategory={productData.subCategory} />
+        <RelatedProducts
+          category={productData.category}
+          subCategory={productData.subCategory}
+        />
       </div>
-
-
     </section>
   ) : (
     <p>Loading...</p>
