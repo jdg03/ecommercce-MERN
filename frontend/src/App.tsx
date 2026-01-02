@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
-import Product from './pages/Product'
+import ProductPage from './pages/Product'
 import Cart from './pages/Cart'
 import Login from './pages/Login'
 import PlaceOrder from './pages/PlaceOrder'
@@ -13,11 +13,15 @@ import Footer from './components/layouts/Footer'
 import Products from './pages/Products'
 import SearchBar from './components/ui/SearchBar'
 
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 function App() {
 
   return (
 
     <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+      <ToastContainer />
       <Navbar />
       <SearchBar />
       <Routes>
@@ -25,7 +29,7 @@ function App() {
         <Route path="/sobre-nosotros" element={<About />} />
         <Route path="/productos" element={<Products />} />
         <Route path="/contacto" element={<Contact />} />
-        <Route path="/producto/:productId" element={<Product />} />
+        <Route path="/producto/:productId" element={<ProductPage />} />
         <Route path="/carrito" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/realizar-pedido" element={<PlaceOrder />} />

@@ -1,26 +1,29 @@
 // contexts/CartContext.tsx
 import { createContext, useState, useEffect } from "react";
-import type { Product } from "../interfaces/ProductInterface";
+import { toast } from 'react-toastify';
 
 export interface CartItem {
   productId: string;
   size: string;
   color?: string;
   quantity: number;
+  price: number;
 }
 
 export interface CartContextType {
   cartItems: CartItem[];
-  addToCart: (productId: string, size: string, color?: string) => void;
+  addToCart: (productId: string, size: string, price: number, color?: string) => void;
   updateQuantity: (productId: string, size: string, quantity: number, color?: string) => void;
   removeFromCart: (productId: string, size: string, color?: string) => void;
   getCartCount: () => number;
   clearCart: () => void;
+  getCartTotal: () => number;
 }
 
 export const CartContext = createContext<CartContextType | null>(null);
 
 const CartContextProvider = ({ children }: { children: React.ReactNode }) => {
+
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
     const saved = localStorage.getItem('cart');
     return saved ? JSON.parse(saved) : [];
@@ -30,7 +33,7 @@ const CartContextProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // ✅ Función helper para encontrar un item
+  // Función helper para encontrar un item
   const findCartItem = (productId: string, size: string, color?: string) => {
     return cartItems.findIndex(
       item => 
@@ -40,19 +43,26 @@ const CartContextProvider = ({ children }: { children: React.ReactNode }) => {
     );
   };
 
-  const addToCart = (productId: string, size: string, color?: string) => {
+  const addToCart = (productId: string, size: string, price: number, color?: string, ) => {
     const existingIndex = findCartItem(productId, size, color);
+
+    console.log("el precio que llego es:" + price);
 
     if (existingIndex !== -1) {
       // Ya existe, incrementar cantidad
       const updatedCart = [...cartItems];
       updatedCart[existingIndex].quantity += 1;
       setCartItems(updatedCart);
+      toast.success('Cantidad del producto aumentada');
+    
+ 
     } else {
       // No existe, agregar nuevo
-      setCartItems([...cartItems, { productId, size, color, quantity: 1 }]);
+      setCartItems([...cartItems, { productId, size, price, color, quantity: 1}]);
+      toast.success('Producto agregado al carrito');
     }
-  };
+     
+  };                    
 
   const updateQuantity = (productId: string, size: string, quantity: number, color?: string) => {
     const existingIndex = findCartItem(productId, size, color);
@@ -66,6 +76,7 @@ const CartContextProvider = ({ children }: { children: React.ReactNode }) => {
         const updatedCart = [...cartItems];
         updatedCart[existingIndex].quantity = quantity;
         setCartItems(updatedCart);
+        toast.success('Cantidad actualizada');
       }
     }
   };
@@ -74,6 +85,7 @@ const CartContextProvider = ({ children }: { children: React.ReactNode }) => {
     const existingIndex = findCartItem(productId, size, color);
     if (existingIndex !== -1) {
       setCartItems(cartItems.filter((_, index) => index !== existingIndex));
+      toast.success('Producto eliminado del carrito');
     }
   };
 
@@ -81,8 +93,13 @@ const CartContextProvider = ({ children }: { children: React.ReactNode }) => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
+  const getCartTotal = () => {
+    return cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
+  };
+
   const clearCart = () => {
     setCartItems([]);
+    toast.success('Carrito vaciado');
   };
 
   const value = {
@@ -92,6 +109,7 @@ const CartContextProvider = ({ children }: { children: React.ReactNode }) => {
     removeFromCart,
     getCartCount,
     clearCart,
+    getCartTotal
   };
 
   return (

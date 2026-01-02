@@ -5,8 +5,10 @@ import type { Product } from "../interfaces/ProductInterface";
 import { assets } from "../assets/frontend_assets/assets";
 import RelatedProducts from "../components/products/RelatedProducts";
 import { useCartContext } from "../hooks/useCartContext";
+import { toast } from 'react-toastify';
 
-const Product = () => {
+const ProductPage = () => {
+
   const { productId } = useParams();
   const { products, currency } = useShopContext();
   const [productData, setProductData] = useState<Product | null>(null);
@@ -26,19 +28,20 @@ const Product = () => {
 
   const handleAddToCart = () => {
     if (!size) {
-      alert("Por favor selecciona una talla");
+      toast.error("Por favor selecciona una talla");
       return;
     }
     
 
     if (productData?.colors && productData.colors.length > 0 && !color) {
-      alert("Por favor selecciona un color");
+      toast.error("Por favor selecciona un color");
       return;
     }
 
     addToCart(
       productData?._id || "", 
       size, 
+      productData!.price,
       color || undefined
     );
   };
@@ -177,4 +180,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductPage;

@@ -2,9 +2,11 @@ import { NavLink, Link } from "react-router-dom";
 import { assets } from "../../assets/frontend_assets/assets";
 import { useState } from "react";
 import { useShopContext } from "../../hooks/useShopContext";
+import { useCartContext } from "../../hooks/useCartContext";
 
 const Navbar = () => {
   const [visible, setVisible] = useState<boolean>(false);
+  const {getCartCount} = useCartContext();
 
   const {setShowSearch } = useShopContext();
 
@@ -44,7 +46,7 @@ const Navbar = () => {
         <Link to="carrito" className="relative">
           <img src={assets.cart_icon} alt="carrito" className="w-5 w-min-5" />
           <p className="absolute right-[5px] bottom-[-5px] w-4 text-center leading-4 bg bg-black text-white aspect-square rounded-full text-[8px]">
-            10
+            {getCartCount()}
           </p>
         </Link>
         <div className="group relative">
