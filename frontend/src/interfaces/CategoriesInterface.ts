@@ -1,10 +1,8 @@
 
-
 export interface Category {
   value: string;
   label: string;
 }
-
 
 export interface SubCategory {
   value: string;

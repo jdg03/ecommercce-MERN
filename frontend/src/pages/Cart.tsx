@@ -6,7 +6,7 @@ import CartTotal from "../components/cart/CartTotal";
 
 const Cart = () => {
   const { cartItems, updateQuantity, removeFromCart, getCartTotal } = useCartContext();
-  const { products, currency } = useShopContext();
+  const { products, currency, navigate } = useShopContext();
 
 
   if (cartItems.length === 0) {
@@ -96,6 +96,12 @@ const Cart = () => {
       <div className="flex justify-end my-20">
         <div className="w-full sm:w-[450px]">
           <CartTotal />
+
+             <div className="w-full text-end mt-8">
+            <button onClick={() => navigate('/realizar-pedido')} className="bg-black text-white text-sm px-8 py-3">
+              PROCEDER AL PAGO
+            </button>
+          </div>
         </div>
         
       </div>

@@ -4,7 +4,7 @@ import Title from "../ui/Title";
 
 const CartTotal = () => {
     const {getCartTotal} = useCartContext();
-    const {currency, delivery_fee, navigate} = useShopContext();
+    const {currency, delivery_fee} = useShopContext();
 
     
   return (
@@ -31,11 +31,8 @@ const CartTotal = () => {
             </div>
           </div>
 
-          <div className="w-full text-end mt-8">
-            <button onClick={() => navigate('/realizar-pedido')} className="bg-black text-white text-sm px-8 py-3">
-              PROCEDER AL PAGO
-            </button>
-          </div>
+       
+
         </div>
      
   )

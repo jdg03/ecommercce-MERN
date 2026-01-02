@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { ShopContext } from '../context/ShopContext';
-import type { ShopContextType } from '../interfaces/ShopContextInterface';
+import type { ShopContextType } from '../interfaces/ShopContextType';
 
 export const useShopContext = (): ShopContextType => {
   const context = useContext(ShopContext);

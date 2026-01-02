@@ -1,6 +1,6 @@
   import { createContext, useState } from "react";
   import { products } from "../assets/frontend_assets/assets";
-  import type { ShopContextType } from "../interfaces/ShopContextInterface";
+  import type { ShopContextType } from "../interfaces/ShopContextType";
 import { useNavigate } from "react-router-dom";
 
   export const ShopContext = createContext<ShopContextType | null>(null);
