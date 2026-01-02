@@ -9,4 +9,5 @@ export interface ShopContextType {
   setSearch: (search: string) => void;
   showSearch: boolean;
   setShowSearch: (show: boolean) => void;
+  navigate: any;
 }

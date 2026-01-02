@@ -1,6 +1,7 @@
   import { createContext, useState } from "react";
   import { products } from "../assets/frontend_assets/assets";
   import type { ShopContextType } from "../interfaces/ShopContextInterface";
+import { useNavigate } from "react-router-dom";
 
   export const ShopContext = createContext<ShopContextType | null>(null);
   
@@ -11,6 +12,8 @@
 
     const [search, setSearch] = useState("");
     const [showSearch, setShowSearch] = useState(false);
+    const navigate = useNavigate();
+
 
     const value = {
         products,
@@ -20,6 +23,7 @@
         setSearch,
         showSearch,
         setShowSearch,
+        navigate,
     }
     return(
         <ShopContext.Provider value={value}>

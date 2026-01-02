@@ -1,24 +1,9 @@
 // contexts/CartContext.tsx
 import { createContext, useState, useEffect } from "react";
 import { toast } from 'react-toastify';
+import type  {CartContextType} from "../interfaces/CartContextType";
+import type  {CartItem} from "../interfaces/CartItemIterface";
 
-export interface CartItem {
-  productId: string;
-  size: string;
-  color?: string;
-  quantity: number;
-  price: number;
-}
-
-export interface CartContextType {
-  cartItems: CartItem[];
-  addToCart: (productId: string, size: string, price: number, color?: string) => void;
-  updateQuantity: (productId: string, size: string, quantity: number, color?: string) => void;
-  removeFromCart: (productId: string, size: string, color?: string) => void;
-  getCartCount: () => number;
-  clearCart: () => void;
-  getCartTotal: () => number;
-}
 
 export const CartContext = createContext<CartContextType | null>(null);
 
