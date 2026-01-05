@@ -1,11 +1,12 @@
-import { assets } from "../../assets/frontend_assets/assets";
+import { assetsVariables } from "../../assets/variables_assets/assetsVariables";
+import { contactTextVariables } from "../../assets/variables_assets/assetsVariables";
 
 const Footer = () => {
   return (
     <footer>
       <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm">
         <div>
-          <img src={assets.logo} alt="logo" className="mb-5 w-32" />
+          <img src={assetsVariables.logo} alt="logo" className="mb-5 w-32" />
           <p className="w-full md:w-2/3 text-gray-600 ">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
             quod.
@@ -14,7 +15,7 @@ const Footer = () => {
 
         <div>
           <p className="text-xl font-medium mb-5">
-            COMPANY
+            NOSOTROS
           </p>
           <ul className="flex flex-col gap-1 text-gray-600">
             <li>Inicio</li>
@@ -26,11 +27,11 @@ const Footer = () => {
         </div>
 
         <div>
-          <p className="text-xl font-medium mb-5">GET IN TOUCH</p>
+          <p className="text-xl font-medium mb-5">CONTACTANOS</p>
           <ul className="flex flex-col gap-1 text-gray-600">
-            <li>123 Main St, Anytown, USA</li>
-            <li>(123) 456-7890</li>
-            <li>info@example.com</li>
+            <li>{contactTextVariables.address}</li>
+            <li>{contactTextVariables.phone}</li>
+            <li>{contactTextVariables.email}</li>
           </ul>
         </div>
       </div>

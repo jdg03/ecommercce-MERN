@@ -102,8 +102,8 @@ const ProductPage = () => {
                   <button
                     key={index}
                     onClick={() => setSize(item)}
-                    className={`px-4 py-2 border bg-gray-100 rounded ${
-                      item === size ? "border-black" : ""
+                    className={`px-4 py-2 border rounded hover:bg-black hover:text-white transition-all duration-500 ${
+                      item === size ? "bg-black text-white" : ""
                     }`}
                   >
                     {item}
@@ -121,8 +121,8 @@ const ProductPage = () => {
                     <button
                       key={index}
                       onClick={() => setColor(item)}
-                      className={`px-4 py-2 border bg-gray-100 rounded ${
-                        item === color ? "border-black" : ""
+                      className={`px-4 py-2 border rounded hover:bg-black hover:text-white transition-all duration-500 ${
+                        item === color ? "bg-black text-white" : ""
                       }`}
                     >
                       {item}

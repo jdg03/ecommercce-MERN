@@ -1,4 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
+import { assetsVariables } from "../../assets/variables_assets/assetsVariables";
 import { assets } from "../../assets/frontend_assets/assets";
 import { useState } from "react";
 import { useShopContext } from "../../hooks/useShopContext";
@@ -12,7 +13,7 @@ const Navbar = () => {
 
   return (
     <div className="flex items-center justify-between py-5 font-medium">
-      <Link to="/"><img src={assets.logo} alt="logo de la empresa" className="w-36" /></Link>
+      <Link to="/"><img src={assetsVariables.logo} alt="logo de la empresa" className="w-36" /></Link>
 
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
         <NavLink to="/" className="flex flex-col items-center gap-1">

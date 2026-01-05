@@ -1,4 +1,4 @@
-import { assets } from "../../assets/frontend_assets/assets";
+import { assetsVariables } from "../../assets/variables_assets/assetsVariables";
 
 const Hero = () => {
   return (
@@ -22,7 +22,7 @@ const Hero = () => {
 
       {/* Hero right side*/}
      
-        <img src={assets.hero_img} alt="imagen hero" className="w-full sm:w-1/2" />
+        <img src={assetsVariables.hero_img} alt="imagen hero" className="w-full sm:w-1/2" />
         
     
     </section>
